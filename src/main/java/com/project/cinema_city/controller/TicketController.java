@@ -1,6 +1,7 @@
 package com.project.cinema_city.controller;
 
-import com.project.cinema_city.dto.request.TicketRequest;
+import com.project.cinema_city.dto.request.Ticket.TicketCreateRequest;
+import com.project.cinema_city.dto.request.Ticket.TicketUpdateRequest;
 import com.project.cinema_city.dto.response.TicketResponse;
 import com.project.cinema_city.maper.TicketMapperImpl;
 import com.project.cinema_city.service.TicketService;
@@ -20,24 +21,27 @@ public class TicketController {
     private TicketMapperImpl ticketMapper;
 
     @GetMapping
-    public List <TicketResponse> tickets(){
+    public List<TicketResponse> tickets() {
         return ticketService.tickets().stream().map(ticketMapper::toDto).toList();
     }
+
     @GetMapping("/{id}")
-    public TicketResponse getById(@Valid @PathVariable Long id){
+    public TicketResponse getById(@Valid @PathVariable Long id) {
         return ticketMapper.toDto(ticketService.getById(id));
     }
 
     @PostMapping("/add")
-    public ResponseEntity <TicketResponse> add(@Valid @RequestBody TicketRequest ticketRequest){
-        return new ResponseEntity<>(ticketMapper.toDto(ticketService.add(ticketMapper.fromDto(ticketRequest))),HttpStatus.OK);
+    public ResponseEntity<TicketResponse> add(@Valid @RequestBody TicketCreateRequest ticketCreateRequest) {
+        return new ResponseEntity<>(ticketMapper.toDto(ticketService.add(ticketMapper.fromDto(ticketCreateRequest))), HttpStatus.OK);
     }
+
     @PutMapping("/update")
-    public ResponseEntity <TicketResponse> update(@Valid @RequestBody TicketRequest ticketRequest){
-        return new ResponseEntity<>(ticketMapper.toDto(ticketService.update(ticketMapper.fromDto(ticketRequest))),HttpStatus.OK);
+    public ResponseEntity<TicketResponse> update(@Valid @RequestBody TicketUpdateRequest ticketCreateRequest) {
+        return new ResponseEntity<>(ticketMapper.toDto(ticketService.update(ticketMapper.fromDto(ticketCreateRequest))), HttpStatus.OK);
     }
-    @DeleteMapping("/delete")
-    public void deleteById(@PathVariable Long id){
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteById(@PathVariable Long id) {
         ticketService.deleteByID(id);
     }
 

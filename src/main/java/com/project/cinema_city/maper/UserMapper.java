@@ -1,7 +1,7 @@
 package com.project.cinema_city.maper;
 
-import com.project.cinema_city.dto.request.LoginRequest;
-import com.project.cinema_city.dto.request.RegisterRequest;
+import com.project.cinema_city.dto.request.Auth.LoginRequest;
+import com.project.cinema_city.dto.request.Auth.RegisterRequest;
 import com.project.cinema_city.dto.response.UserResponse;
 import com.project.cinema_city.entity.User;
 import org.mapstruct.Mapper;

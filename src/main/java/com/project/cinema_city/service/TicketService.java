@@ -20,11 +20,16 @@ public class TicketService {
     public Ticket getById(Long id) {
         return ticketRepository.findById(id).orElseThrow(() -> new TicketNotFoundException("Ticket not found"));
     }
-    public Ticket add (Ticket ticket){
+
+    public Ticket add(Ticket ticket) {
         return ticketRepository.save(ticket);
     }
-    public Ticket update (Ticket ticket){
+
+    public Ticket update(Ticket ticket) {
         return ticketRepository.save(ticket);
     }
-    public void deleteByID(Long id ){ticketRepository.deleteById(id);}
+
+    public void deleteByID(Long id) {
+        ticketRepository.deleteById(id);
+    }
 }

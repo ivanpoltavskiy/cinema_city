@@ -1,4 +1,4 @@
-package com.project.cinema_city.dto.request;
+package com.project.cinema_city.dto.request.Auth;
 
 import lombok.Data;
 
